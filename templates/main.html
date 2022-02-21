@@ -13,7 +13,7 @@
             crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <title>너의 후기는</title>
 
     <style>
@@ -47,6 +47,18 @@
             color: black;
         }
 
+        .card-header {
+            color: black;
+        }
+
+        .card-text {
+            color: black;
+        }
+
+        .card-footer {
+            color: black;
+        }
+
     </style>
     <script>
         $(document).ready(function () {
@@ -70,12 +82,33 @@
                         let number = rows[i]['number']
                         let vaccine = rows[i]['vaccine']
 
-                        let temp_html = `        <tr>
-                                                    <td>${name}</td>
-                                                    <td>${comment}</td>
-                                                    <td>${number}</td>
-                                                    <td>${vaccine}</td>
-                                                </tr>`
+                        // let temp_html = `        <tr>
+                        //                             <td>${name}</td>
+                        //                             <td>${comment}</td>
+                        //                             <td>${number}</td>
+                        //                             <td>${vaccine}</td>
+                        //                         </tr>`
+                        //
+                        // let temp_html = `<div class="row row-cols-1 row-cols-md-4 g-4">
+                        //                   <div class="col">
+                        //                     <div class="card">
+                        //                       <div class="card-body">
+                        //                         <h5 class="card-text">${name}</h5>
+                        //                         <p class="card-text">${comment}</p>
+                        //                         <p class="card-text">${number}</p>
+                        //                         <p class="card-text">${vaccine}</p>
+                        //                       </div>
+                        //                     </div>
+                        //                   </div>`
+
+                        let temp_html = `<div class="card border-success mb-3" style="width: 25rem;float: left;">
+                                              <div class="card-header">${name}</div>
+                                              <div class="card-body">
+                                                <h5 class="card-text">${comment}</h5>
+                                              </div>
+                                              <div class="card-footer">${number}</div>
+                                              <div class="card-footer">${vaccine}</div>
+                                            </div>`
 
                         $('#order-box').append(temp_html)
                     }
