@@ -26,14 +26,14 @@ def reviews_create():
     comment_receive = request.form['comment_give']
     vaccine_receive = request.form['vaccine_give']
     number_receive = request.form['number_give']
-    created_at = datetime.now()
+    time_receive = request.form['time_give']
 
     doc = {
         'name': name_receive,
         'comment': comment_receive,
         'vaccine': vaccine_receive,
         'number': number_receive,
-        'created_at': created_at
+        'time': time_receive
 
     }
     db.vaccines.insert_one(doc)
@@ -57,20 +57,14 @@ def index():
     elif len(degree) > 0:
         options['degree'] = degree
 
-    review_list = list(db.vaccines.find(options).limit(9).skip((page - 1) * 9))
+    review_list = list(db.vaccines.find(options).limit(9).skip((page - 1) * 9).sort('date', -1))
 
     results = []
 
     for document in review_list:
-        document['_id'] = str(document['_id'])
         results.append(document)
 
     return jsonify({'reviews': results})
-
-
-@app.route("/reviews")
-def board_create():
-    return render_template('new_review.html')
 
 
 if __name__ == '__main__':
